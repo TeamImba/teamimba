@@ -1,22 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-<head> 
-	<script src="http://www.google.com/jsapi"></script>
-	<script type="text/javascript">
-	  google.load("jquery", "1.3.2");
-	</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title><%= yield(:title).present? || "Celine"%></title>
   <%= javascript_include_tag "application", "rails" %>
-  <%# = stylesheet_link_tag "960", "reset" %>
-  
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
- 
-	<title>Noontec PH</title> 
-</head> 
- 
-<body> 
+  <%= stylesheet_link_tag "960", "screen"%>
+  <%= csrf_meta_tag %>
+</head>
+<body class="container_12">
+<header class="clearfix">
+  <h1 class="prefix_5"><%= link_to "CELINE", "", :class => "logo"%></h1>
+  <nav>
+    <ul class="prefix_3 ">
+      <li><%= link_to "Shoes", "", :class => "current" %></li>
+      <li><%= link_to "Bags" %></li>
+      <li><%= link_to "Garments" %></li>
+      <li><%= link_to "Accessories" %></li>
+      <li><%= link_to "Promotions" %></li>
+      <li><%= link_to "Sale" %></li>
+    </ul>
+  </nav>
+</header>
 <%= render "layouts/user_session" %>
 <%= yield %>
-
+<footer class="prefix_2">
+  <ul>
+    <li><%= link_to "CELINE" %></li>
+    <li><%= link_to "About Us" %></li>
+    <li><%= link_to "Customer Service" %></li>
+    <li><%= link_to "Store Locator" %></li>
+    <li><%= link_to "Careers" %></li>
+    <li><%= link_to "Contact Us" %></li>
+  </ul>
+</footer>
 </body>
 </html>
