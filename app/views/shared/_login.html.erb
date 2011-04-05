@@ -1,0 +1,135 @@
+<script type='text/javascript'>
+window.afterFbAsyncInit = function() {
+  FB.Event.subscribe('auth.login', function(response) {
+    window.location = '/user_sessions/create_with_fb';
+  });
+  FB.Event.subscribe('auth.logout', function(response) {
+    window.location = '/logout';
+  });
+}
+</script> 
+<div id='fb-root'></div> 
+<script type='text/javascript'> 
+window.fbAsyncInit = function() {
+  FB.init({appId: '162199843817522', status: true, cookie: true, xfbml: true});
+    if (window.afterFbAsyncInit)
+      window.afterFbAsyncInit();
+  FB.api('/me', function(user) {
+    if(user != null && user.name !== undefined){
+      document.getElementById('username').innerHTML = "Hello " + user.name + "!"
+    }
+   });
+};
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
+  $(document).ready(function(){
+    $(".fb_login").live("click", function(){
+      FB.login(function(response) {
+        if (response.session)
+          if (response.perms)
+            window.location = '/user_sessions/create_with_fb';
+          else
+            window.location = '/user_sessions/create_with_fb';
+      }, {perms:'email, offline_access, publish_stream, user_about_me, user_birthday, user_interests, user_likes, user_location, user_status, read_friendlists'});
+    });
+    <%- if !current_user -%>
+    $("#open").click(function(){
+      $("div#panel").slideDown("slow");	
+    });	
+    $("#close").click(function(){
+      $("div#panel").slideUp("slow");	
+    });		
+    $("#toggle a").click(function () {
+      $("#toggle a").toggle();
+    });
+    <%- else -%>
+    <%- end -%>
+    $('#login').bind('ajax:beforeSend', function(evt, data, status, xhr){
+      $("#login_loading").show();
+    });
+    $('#login').bind('ajax:complete', function(evt, data, status, xhr){
+      $("#login_loading").hide();
+    });
+    $('#login').bind('ajax:success', function(evt, data, status, xhr){
+      $("#username").html("Hello " + xhr.responseText + "!");
+      $("#close").click();
+      $("#open").unbind();
+      alert("Thank you");
+    });
+    $('#login').bind('ajax:error', function(evt, data, status, xhr){
+      alert("Invalid Username/Password");
+    });
+    $('#signup').bind('ajax:beforeSend', function(evt, data, status, xhr){
+      $("#signup_loading").show();
+    });
+    $('#signup').bind('ajax:complete', function(evt, data, status, xhr){
+      $("#signup_loading").hide();
+    });
+    $('#signup').bind('ajax:success', function(evt, data, status, xhr){
+      $("#username").html("Hello " + $("#signup_email").val() + "!");
+      $("#signup_email").val("");
+      $("#signup_password").val("");
+      $("#close").click();
+      $("#open").unbind();
+      alert("Thank you");
+    });
+    $('#signup').bind('ajax:error', function(evt, data, status, xhr){
+      alert(data.responseText);
+    });
+  });
+</script> 
+<!-- Login --> 
+<section id="toppanel">
+  <div id="panel">
+    <div class="content clearfix"> 
+      <div class="left">
+        &nbsp;
+      </div> 
+      <div class="left"> 
+        <%= form_tag(login_path, :method => :post, :class => "clearfix", :id => "login", :remote => true) do %>
+          <h1 class="padlock">Member Login</h1> 
+          <label class="grey" for="log">Email:</label> 
+          <input class="field" type="text" name="email" placeholder="mail@example.com" size="23" /> 
+          <label class="grey" for="pwd">Password:</label>
+          <input class="field" type="password" name="password" placeholder="password" size="23" /> 
+          <div class="clear"></div>
+          <input type="submit" value="Login" class="bt_login" /> 
+          <!--a class="lost-pwd" href="#">Lost your password?</a-->
+          <span style="display:none" id="login_loading"><%= image_tag "progress.gif"%></span>
+        <%- end -%>
+      </div> 
+      <div class="left right"> 
+        <%= form_tag(signup_path, :method => :post, :class => "clearfix", :id => "signup", :remote => true) do %>
+          <h1>Not a member yet? Sign Up!</h1>				
+          <label class="grey" for="signup">Email:</label> 
+          <input class="field" type="text" name="email" id="signup_email" placeholder="mail@example.com" size="23" /> 
+          <label class="grey" for="email">Password:</label> 
+          <input class="field" type="password" name="password" id="signup_password" placeholder="password" size="23" /> 
+          <input type="submit" value="Register" class="bt_register" />
+          <a class="lost-pwd" href="javascript:void(0)" style="padding-left:10px"><fb:login-button autologoutlink="true" perms="email,offline_access,publish_stream,user_about_me,user_birthday,user_interests,user_likes,user_location,user_status,read_friendlists"></fb:login-button> </a>
+          <span style="display:none" id="signup_loading"><%= image_tag "progress.gif"%></span>
+        <%- end %>
+      </div> 
+    </div> 
+  </div> <!-- /login -->
+  <!-- The tab on top -->	
+  <div class="tab"> 
+    <ul class="login"> 
+      <li class="left">&nbsp;</li> 
+      <li id="username">Hello <%= (current_user)? current_user.email : "Guest"  %>!</li> 
+      <li class="sep">|</li> 
+      <li id="toggle">
+        <%- if !current_user-%>
+        <a id="open" class="open" href="javascript:void(0)">Log In | Register</a> 
+        <%- else -%>
+        <a href="/logout">Logout</a> 
+        <%- end -%>
+        <a id="close" style="display: none;" class="close" href="javascript:void(0)">Close Panel</a>			
+      </li> 
+      <li class="right">&nbsp;</li> 
+    </ul> 
+  </div> <!-- / top --> 	
+</section> <!--panel --> 

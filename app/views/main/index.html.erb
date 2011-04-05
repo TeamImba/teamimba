@@ -21,9 +21,12 @@
   </div>
 
 </section>
-
+<%- content_for :additional_scripts do -%>
+<%= stylesheet_link_tag "coin-slider"%>
+<%= javascript_include_tag "coin-slider.min" %>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#coin-slider').coinslider( {width: 640} );
 	});
 </script>
+<%- end -%>
