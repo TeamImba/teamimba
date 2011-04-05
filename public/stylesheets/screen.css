@@ -1,0 +1,30 @@
+body{
+  font-family: "Helvetica", "Verdana", "Arial", "sans-serif";
+}
+.logo, .logo:hover{
+  text-decoration: none;
+}
+section.slideshow{
+  margin-top: 20px;
+}
+footer ul, nav ul{
+  list-style: none;
+  list-style-image: none;
+}
+footer ul li, nav ul li{
+  float: left;
+  margin: 0px 10px 0px 10px;
+}
+a{
+  text-decoration: none;
+  color: #222;
+}
+a:hover{
+  color: black;
+  text-decoration: underline;
+  background-color: white;
+}
+.current{
+  color: yellow;
+  background-color: gray;
+}
