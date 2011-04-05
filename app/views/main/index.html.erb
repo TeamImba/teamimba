@@ -1,3 +1,29 @@
 <section class="prefix_2 slideshow">
-<%=link_to image_tag "slideshow.jpg", :width => "640px"%>
+
+  <%#=link_to image_tag "slideshow.jpg", :width => "640px"%>
+
+
+  <div id='coin-slider'>
+
+    <a href="#" target="_blank" width="640px">
+      <%=image_tag "slideshow.jpg", :width => "640px" %>
+      <span>
+        Description for img01
+      </span>
+    </a>
+    <a href="#" target="_blank" width="640px">
+      <%=image_tag "slideshow.jpg", :width => "640px" %>
+      <span>
+        Description for img01
+      </span>
+    </a>
+    
+  </div>
+
 </section>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#coin-slider').coinslider( {width: 640} );
+	});
+</script>

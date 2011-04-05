@@ -3,13 +3,17 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
   <title><%= yield(:title).present? || "Celine"%></title>
-  <%= javascript_include_tag "application", "rails" %>
-  <%= stylesheet_link_tag "960", "screen"%>
+  <script src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+	  google.load("jquery", "1.5.2");
+	</script>
+  <%= javascript_include_tag "application", "rails", "coin-slider.min" %>
+  <%= stylesheet_link_tag "960", "screen", "coin-slider"%>
   <%= csrf_meta_tag %>
 </head>
 <body class="container_12">
 <header class="clearfix">
-  <h1 class="prefix_5"><%= link_to "CELINE", "", :class => "logo"%></h1>
+  <h1 class="prefix_5"><%= link_to "CELINE", root_url, :class => "logo"%></h1>
   <nav>
     <ul class="prefix_3 ">
       <li><%= link_to "Shoes", "", :class => "current" %></li>
