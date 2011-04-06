@@ -14,8 +14,10 @@
 </head>
 <body class="container_12">
 <header class="clearfix">
-  <h1 class="prefix_5"><%= link_to "CELINE", root_url, :class => "logo"%></h1>
-  <nav>
+  <h1 class="prefix_5 grid_7">
+    <%= link_to "CELINE", root_url, :class => "logo"%>
+  </h1>
+  <nav class="grid_12 alpha">
     <ul>
       <li><%= link_to "Shoes", "", :class => "current" %></li>
       <li><%= link_to "Bags" %></li>
@@ -29,7 +31,7 @@
 <%#= render "layouts/user_session" %>
 <%= render "shared/login" %>
 <%= yield %>
-<footer class="prefix_2">
+<footer class="prefix_2 grid_10">
   <ul>
     <li><%= link_to "CELINE" %></li>
     <li><%= link_to "About Us" %></li>

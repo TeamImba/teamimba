@@ -10,6 +10,9 @@ section.slideshow{
 header nav ul{
   padding-left: 0px;
 }
+footer{
+  padding-bottom:20px;
+}
 footer ul, nav ul{
   list-style: none;
   list-style-image: none;
