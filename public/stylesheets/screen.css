@@ -7,6 +7,9 @@ body{
 section.slideshow{
   margin-top: 20px;
 }
+header nav ul{
+  padding-left: 0px;
+}
 footer ul, nav ul{
   list-style: none;
   list-style-image: none;

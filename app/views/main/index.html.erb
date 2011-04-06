@@ -1,18 +1,17 @@
-<section class="prefix_2 slideshow">
+<section class="grid_12 slideshow">
 
-  <%#=link_to image_tag "slideshow.jpg", :width => "640px"%>
+  
 
 
   <div id='coin-slider'>
-
-    <a href="#" target="_blank" width="640px">
-      <%=image_tag "slideshow.jpg", :width => "640px" %>
+    <a href="#" target="_blank" width="960px" height="550px">
+      <%=image_tag "slideshow.jpg", :width => "960px", :height => "550px" %>
       <span>
         Description for img01
       </span>
     </a>
-    <a href="#" target="_blank" width="640px">
-      <%=image_tag "slideshow.jpg", :width => "640px" %>
+    <a href="#" target="_blank" width="960px" height="550px">
+      <%=image_tag "slideshow.jpg", :width => "960px", :height => "550px" %>
       <span>
         Description for img01
       </span>
@@ -26,7 +25,7 @@
 <%= javascript_include_tag "coin-slider.min" %>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#coin-slider').coinslider( {width: 640} );
+		$('#coin-slider').coinslider( {width: 960, height: 550} );
 	});
 </script>
 <%- end -%>

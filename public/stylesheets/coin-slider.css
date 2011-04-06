@@ -3,7 +3,7 @@
 	http://workshop.rs/projects/coin-slider
 */
 
-.coin-slider { overflow: hidden; zoom: 1; position: relative; }
+.coin-slider { overflow: hidden; zoom: 1; position: relative; margin: 0;}
 .coin-slider a{ text-decoration: none; outline: none; border: none; }
 
 .cs-buttons { font-size: 0px; padding: 10px; float: left; }

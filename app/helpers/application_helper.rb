@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def errors_for(object, message=nil)
     html = ""
     unless object.errors.blank?

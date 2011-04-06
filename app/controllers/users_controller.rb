@@ -7,13 +7,23 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      flash[:notice] = "Account registered!"
-      redirect_back_or_default account_url
+    @user = User.new({:email => params[:email], :password => params[:password], :password_confirmation => params[:password]})
+    if request.xhr?
+      if @user.save
+        render :text => params[:email], :status => 200
+      else
+        render :text  => @user.errors.full_messages.join("<br />"), :status => 500
+      end
     else
-      render :action => :new
+      # should not be here...
+      if @user.save
+        redirect_to root_url
+      else
+        flash[:notice] = @user.errors.full_messages.join("<br />")
+        redirect_to root_url
+      end
     end
+    
   end
   
   def show

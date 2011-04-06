@@ -233,7 +233,11 @@ Version: 1.0
 	float:left;
 	clear: right;
 	padding: 15px 5px 0;
+  background-color:#272727;
 	font-size: 0.95em;
 	text-decoration: underline;
 }
 
+#errors{
+  color:red;
+}

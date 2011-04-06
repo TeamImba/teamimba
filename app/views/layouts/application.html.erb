@@ -8,7 +8,6 @@
 	<script type="text/javascript">
 	  google.load("jquery", "1.5.2");
 	</script>
-  <%= javascript_include_tag "application", "rails" %>
   <%= stylesheet_link_tag "960", "screen", "login-panel"%>
   <%= yield :additional_scripts%>
   
@@ -17,7 +16,7 @@
 <header class="clearfix">
   <h1 class="prefix_5"><%= link_to "CELINE", root_url, :class => "logo"%></h1>
   <nav>
-    <ul class="prefix_3 ">
+    <ul>
       <li><%= link_to "Shoes", "", :class => "current" %></li>
       <li><%= link_to "Bags" %></li>
       <li><%= link_to "Garments" %></li>

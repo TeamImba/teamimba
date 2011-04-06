@@ -4,17 +4,23 @@ Celine::Application.routes.draw do |map|
     root :to => "main#index"
   end
   
-  map.signup 'signup', :controller => "users", :action => "new"
-  map.login 'login', :controller => 'user_sessions', :action => 'new'
-  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy' 
-  map.reset_password 'reset_password', :controller => 'password_resets', :action => 'new'
+  match 'login' => 'user_sessions#create'
+  match 'logout' => 'user_sessions#destroy'
+  match 'signup' => 'users#create'
+  match 'reset_password' => 'password_resets#new'
   
-  map.resource :user_session
-  map.resource :account, :controller => "users"
+  
+  
+  resource :account, :controller => "users"
+  resource :user_sessions do
+    collection do
+      get 'create_with_fb'
+    end
+  end
   
 
-  map.resources :password_resets
-  map.resources :users
+  resources :password_resets
+  resources :users
   
   #root :to => "users#new"
   root :to => "main#index"
